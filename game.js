@@ -75,7 +75,16 @@ function playGame() {
 
     let round = 0; 
     while (round < 5) {
-
+        playRound(getHumanChoice(), getComputerChoice());
+        round = round + 1;
     }
+
+    if (humanScore > computerScore) {
+        console.log("Winner! You won " + humanScore + " out of 5 rounds.")
+    } else {
+        console.log("You lost. Your final score was " + humanScore + ".")
+    }
+    
 }
 
+playGame();
