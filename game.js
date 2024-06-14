@@ -32,36 +32,37 @@ function playGame() {
     };
 
     function playRound(humanChoice, computerChoice) {
+        let displayMessage;
         if (humanChoice === computerChoice) {
-            console.log("Tie. No winner.");
+            displayMessage = "Tie. No winner.";
 
         } else if (humanChoice === 'rock') {
 
             if (computerChoice === 'paper') {
-                console.log("You lose! Paper beats rock."); 
+                displayMessage = "You lose! Paper beats rock."; 
                 computerScore += 1;
             } else if (computerChoice === 'scissors') {
-                console.log("Winner! Rock beats scissors.");
+                displayMessage =  "Winner! Rock beats scissors.";
                 humanScore += 1; 
             } 
 
         } else if (humanChoice === 'paper') {
 
             if (computerChoice === 'rock') {
-                console.log("Winner! Paper beats rock.");
+                displayMessage = "Winner! Paper beats rock.";
                 humanScore += 1; 
             } else if (computerChoice === 'scissors') {
-                console.log("Loser alert! Scissors beats paper.");
+                displayMessage = "Loser alert! Scissors beats paper.";
                 computerScore += 1;
             }
 
         } else if (humanChoice === 'scissors') {
 
             if (computerChoice === 'rock') {
-                console.log("Loser! Rock beats scissors.");
+                displayMessage = "Loser! Rock beats scissors.";
                 computerScore += 1; 
             } else if (computerChoice === 'paper') {
-                console.log("Winner! Scissors beats paper.");
+                displayMessage = "Winner! Scissors beats paper.";
                 computerChoice += 1;
             }
         }
