@@ -1,5 +1,5 @@
 function playGame() {
-    alert("Welcome to Rock-Paper-Scissors! The round's winner will be announced. After 5 rounds, a winner will be decided.")
+    alert("Welcome to Rock-Paper-Scissors! After 5 rounds, a winner will be decided.")
     
     let humanScore = 0;
     let computerScore = 0;
@@ -66,6 +66,7 @@ function playGame() {
                 computerChoice += 1;
             }
         }
+        alert(displayMessage);
     }; 
 
     let round = 0; 
@@ -75,9 +76,13 @@ function playGame() {
     }
 
     if (humanScore > computerScore) {
-        console.log("Winner! You won " + humanScore + " out of 5 rounds.")
+        alert("Winner! You won " + humanScore + " out of 5 rounds.") 
+        
+    } else if (humanScore === computerScore) {
+        alert("After 5 rounds, there was a tie.");
+
     } else {
-        console.log("You lost. Your final score was " + humanScore + ".")
+        alert("You lost. Your final score was " + humanScore + ".")
     }
     
 }
