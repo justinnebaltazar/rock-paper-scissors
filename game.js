@@ -1,37 +1,7 @@
 function playGame() {
-    alert("Welcome to Rock-Paper-Scissors! After 5 rounds, a winner will be decided.")
-    
+
     let humanScore = 0;
     let computerScore = 0;
-
-    // only fix starting here
-
-    let rock = document.createElement('button');
-    rock.textContent = 'Rock'; 
-    rock.id = 'rock';
-    document.body.appendChild(rock);
-
-    let paper = document.createElement('button');
-    paper.textContent = 'Paper'; 
-    paper.id = 'paper';
-    document.body.appendChild(paper);
-
-    let scissors = document.createElement('button');
-    scissors.textContent = 'Scissors';
-    scissors.id = 'scissors';
-    document.body.appendChild(scissors);
- 
-    let buttons = document.querySelectorAll('button');
-
-    buttons.forEach((button) => {
-        button.addEventListener('click', (event) => {
-            let playerSelection = event.target.id; 
-            playRound(playerSelection, getComputerChoice());
-        });
-    });
-    // CONTINUE STEP 2 dash 3
-
-    // don't change anything below here 
 
     function getComputerChoice() {
 
@@ -46,7 +16,8 @@ function playGame() {
         }
         return choice;
     };
-    
+
+    // do i need this ? 
     function getHumanChoice() {
     
         let choice = prompt("Rock, Paper, or Scissors: ")
@@ -61,6 +32,7 @@ function playGame() {
     };
 
     function playRound(humanChoice, computerChoice) {
+        
         let displayMessage;
         if (humanChoice === computerChoice) {
             displayMessage = "Tie. No winner.";
@@ -95,21 +67,70 @@ function playGame() {
                 computerChoice += 1;
             }
         }
-        alert(displayMessage);
+
+        let resultsDiv = document.createElement('div');
+        resultsDiv.textContent = displayMessage;
+        resultsDiv.style.padding = '8px';
+        document.body.appendChild(resultsDiv);
+
+        let compPara = document.createElement('p');
+        compPara.textContent = `Computer Score: ${computerScore}`;
+        compPara.style.color = 'red';
+        resultsDiv.appendChild(compPara);
+
+        let humanPara = document.createElement('p'); 
+        humanPara.textContent = `Your Score: ${humanScore}`;
+        humanPara.style.color = 'blue'; 
+        resultsDiv.appendChild(humanPara);
+
     }; 
+    let rock = document.createElement('button');
+    rock.textContent = 'Rock'; 
+    rock.id = 'rock';
+    document.body.appendChild(rock);
+
+    let paper = document.createElement('button');
+    paper.textContent = 'Paper'; 
+    paper.id = 'paper';
+    document.body.appendChild(paper);
+
+    let scissors = document.createElement('button');
+    scissors.textContent = 'Scissors';
+    scissors.id = 'scissors';
+    document.body.appendChild(scissors);
 
 
+ 
+    let buttons = document.querySelectorAll('button');
 
-    if (humanScore > computerScore) {
-        alert("Winner! You won " + humanScore + " out of 5 rounds.") 
-        
-    } else if (humanScore === computerScore) {
-        alert("After 5 rounds, there was a tie.");
+    let rounds = 0;
+    let winnerMessage;
+    buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            if (rounds < 5) {
+                let playerSelection = event.target.id; 
+                playRound(playerSelection, getComputerChoice());    
+                rounds++;
+            }
 
-    } else {
-        alert("You lost. Your final score was " + humanScore + ".")
-    }
-    
-}
+            if (rounds === 5) {
+                if (humanScore > computerScore) {
+                    winnerMessage = "Winner! You won " + humanScore + " out of 5 rounds.";
+                    
+                } else if (humanScore === computerScore) {
+                    winnerMessage = "After 5 rounds, there was a tie.";
+            
+                } else {
+                    winnerMessage = "You lost. Your final score was " + humanScore + ".";
+                }
+
+                let results = document.createElement('div');
+                results.textContent = winnerMessage;
+                document.body.appendChild(results);
+            
+            }
+        });
+    });
+};
 
 playGame();
