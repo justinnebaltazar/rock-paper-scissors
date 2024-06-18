@@ -4,6 +4,35 @@ function playGame() {
     let humanScore = 0;
     let computerScore = 0;
 
+    // only fix starting here
+
+    let rock = document.createElement('button');
+    rock.textContent = 'Rock'; 
+    rock.id = 'rock';
+    document.body.appendChild(rock);
+
+    let paper = document.createElement('button');
+    paper.textContent = 'Paper'; 
+    paper.id = 'paper';
+    document.body.appendChild(paper);
+
+    let scissors = document.createElement('button');
+    scissors.textContent = 'Scissors';
+    scissors.id = 'scissors';
+    document.body.appendChild(scissors);
+ 
+    let buttons = document.querySelectorAll('button');
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', (event) => {
+            let playerSelection = event.target.id; 
+            playRound(playerSelection, getComputerChoice());
+        });
+    });
+    // CONTINUE STEP 2 dash 3
+
+    // don't change anything below here 
+
     function getComputerChoice() {
 
         let choice;
@@ -69,11 +98,7 @@ function playGame() {
         alert(displayMessage);
     }; 
 
-    let round = 0; 
-    while (round < 5) {
-        playRound(getHumanChoice(), getComputerChoice());
-        round = round + 1;
-    }
+
 
     if (humanScore > computerScore) {
         alert("Winner! You won " + humanScore + " out of 5 rounds.") 
